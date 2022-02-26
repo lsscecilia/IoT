@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -109,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("asd", "---------------- this is response : " + response);
                         try {
                             JSONObject serverResp = new JSONObject(response.toString());
+
+                            // change to use json object
+                            TextView textView = (TextView) findViewById(R.id.textView);
+                            textView.setText(response.toString());
                         } catch (JSONException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -118,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
                         // Pull out the first event on the public timeline
-
                     }
                 });
 
