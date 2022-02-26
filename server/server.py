@@ -48,7 +48,7 @@ def infer_image():
     for i in raw_pred:
         object_names.append(i[1])
     print('Predicted:', object_names)
-    return ','.join(object_names)
+    return jsonify(','.join(object_names))
     
 
 @app.route('/', methods=['GET'])
@@ -57,5 +57,4 @@ def index():
 
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
+    app.run(debug=True, host='0.0.0.0')
