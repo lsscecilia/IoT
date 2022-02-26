@@ -22,22 +22,17 @@ def prepare_image(img):
     img = preprocess_input(img)
     return img
 
-
-# def predict_result(img):
-#     return 1 if model.predict(img)[0][0] > 0.5 else 0
-
-
 app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def infer_image():
     if 'file' not in request.files:
-        return "Please try again. The Image doesn't exist"
+        return jsonify(Error="Please try again. The Image doesn't exist")
     
     file = request.files.get('file')
 
     if not file:
-        return
+        return jsonify(Error="Not file")
 
     img_bytes = file.read()
     img = prepare_image(img_bytes)
@@ -48,7 +43,7 @@ def infer_image():
     for i in raw_pred:
         object_names.append(i[1])
     print('Predicted:', object_names)
-    return jsonify(','.join(object_names))
+    return jsonify(prediction=','.join(object_names))
     
 
 @app.route('/', methods=['GET'])
