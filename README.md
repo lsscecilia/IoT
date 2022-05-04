@@ -16,6 +16,7 @@ This is a flask backend server
 ### Deploy on cloud
 
 http://34.87.129.213:5000/
+update: it is not hosted now due to $$ charges from google cloud
 
 #### To send POST request to server
 RequestParam: predict/file=image.jpg
